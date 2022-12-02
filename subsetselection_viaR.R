@@ -38,30 +38,3 @@ stepSum = summary(stepwize)
 #fitting selected subset model
 ######## Both
 
-
-
-######## Forward
-
-
-######## Backward
-
-glm_selectedSubset = glm(formula = train$isDeleted ~ HasDeleteExpereince + like_count + 
-                           X2 + X36 + X13 + X37 + X23 + is_mother + X7 + X20 + HasImage + 
-                           X6 + comment_count + X5 + privacy_public + X34 + HasCover + 
-                           app_version + X1 + X28 + X35 + initial_er + isParagnant + 
-                           X22 + X11 + participator_count, 
-                         data = train)
-summary(glm_selectedSubset)
-#predition
-glm_probs2=predict(glm_selectedSubset,newdata=train,
-                   type = "response")
-glm_probs2
-glm_pred2=ifelse(glm_probs2>0.57 ,1 ,0)
-
-table(glm_pred2 ,train$isDeleted)
-mean(glm_pred2==train$isDeleted)
- 
-# plot(table(HasDeleteExpereince,isDeleted))
-# mean(isDeleted==HasDeleteExpereince)
-
-# boxplot(Dataset[,2]~Dataset[,1])
